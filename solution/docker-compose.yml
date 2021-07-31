@@ -1,7 +1,11 @@
 version: "3"  # optional since v1.27.0
 services:
   web:
-    image: infracloudio/csvserver:1.2
+  #  image: infracloudio/csvserver:latest
+    build: .
+  #  volumes:
+  #  - ./gencsv.sh:/csvserver/gencsv.sh
+  #  command: bash /csvserver/gencsv.sh
     environment: 
       - CSVSERVER_BORDER=Orange
     ports:
@@ -11,7 +15,7 @@ services:
     networks:
       - csv-prometheus
   prometheus:
-    image: prom/prometheus:v2.22.2
+    image: prom/prometheus:v2.22.0
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
