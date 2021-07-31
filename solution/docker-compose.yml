@@ -9,19 +9,15 @@ services:
     links:  
       - "prometheus"
     networks:
-      - bridge
+      - csv-prometheus
   prometheus:
     image: prom/prometheus:v2.22.2
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  #  links:  
-  #    - "web"
-  #  depends_on:
-  #    - web
     ports:
       - "9090:9090"
     networks:
-      - bridge
+      - csv-prometheus
 networks:
-  bridge:
+  csv-prometheus:
       driver: bridge
